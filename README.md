@@ -13,4 +13,4 @@ For hilts and crystals, if both hands have the same item equipped, unequipping o
 
 Documentation:
 [Helix](https://docs.gethelix.co)
-[LSCS](https://github.com/SpaxscE/lscs_public)
+[LSCS lua functions]([https://github.com/SpaxscE/lscs_public](https://github.com/SpaxscE/lscs_public/blob/main/zz_templates_and_info/useful_lua_functions.txt))
