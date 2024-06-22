@@ -7,3 +7,10 @@ Simply put the entity class (find the desired item in the spawn menu, right clic
 Keep in mind this does not affect the functionality or appearance of any LSCS items, merely lets you equip them through the Helix inventory.
 
 This also adds a stat that influences a player's maximum force points, and in-game config for base force points and stat scaling.
+
+Known issues:
+For hilts and crystals, if both hands have the same item equipped, unequipping one will remove both from the player's inventory. For now, unequip both then equip the desired items.
+
+Documentation:
+[Helix](https://docs.gethelix.co)
+[LSCS](https://github.com/SpaxscE/lscs_public)
