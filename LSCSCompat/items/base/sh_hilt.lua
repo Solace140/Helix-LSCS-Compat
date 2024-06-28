@@ -9,9 +9,13 @@ ITEM.useSound = "items/ammo_pickup.wav"
 -- Check sh_crystal.lua for comments, it's all the same.
 if (CLIENT) then
 	function ITEM:PaintOver(item, w, h)
-		if (item:GetData("equip")) then
+		if (item:GetData("equipRightHilt")) then
 			surface.SetDrawColor(110, 255, 110, 100)
 			surface.DrawRect(w - 14, h - 14, 8, 8)
+		end
+		if (item:GetData("equipLeftHilt")) then
+			surface.SetDrawColor(110, 255, 110, 100)
+			surface.DrawRect(6, h - 14, 8, 8)
 		end
 	end
 
@@ -148,12 +152,22 @@ end
 function ITEM:Unequip(client)
     local lscsInventory = client:lscsGetInventory()
     
-    for k, v in pairs(lscsInventory) do
-        if v == self.class then
-            client:lscsRemoveItem(k)
-            client:lscsBuildPlayerInfo()
-        end
-    end
+	if (self:GetData("equipRightHilt")) then
+		for k, v in pairs(lscsInventory) do
+			if v == self.class and client:lscsGetEquipped()[ k ] == true then
+				client:lscsRemoveItem(k)
+				client:lscsBuildPlayerInfo()
+			end
+		end
+	end
+	if (self:GetData("equipLeftHilt")) then
+		for k, v in pairs(lscsInventory) do
+			if v == self.class and client:lscsGetEquipped()[ k ] == false then
+				client:lscsRemoveItem(k)
+				client:lscsBuildPlayerInfo()
+			end
+		end
+	end
 	client:StripWeapon("weapon_lscs")
     if client:lscsIsValid() then
 		client:Give("weapon_lscs")

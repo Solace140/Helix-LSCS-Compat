@@ -10,9 +10,13 @@ ITEM.useSound = "items/ammo_pickup.wav"
 -- Inventory drawing
 if (CLIENT) then
 	function ITEM:PaintOver(item, w, h)
-		if (item:GetData("equip")) then
+		if (item:GetData("equipRightCrystal")) then
 			surface.SetDrawColor(110, 255, 110, 100)
 			surface.DrawRect(w - 14, h - 14, 8, 8)
+		end
+		if (item:GetData("equipLeftCrystal")) then
+			surface.SetDrawColor(110, 255, 110, 100)
+			surface.DrawRect(6, h - 14, 8, 8)
 		end
 	end
 
@@ -146,17 +150,26 @@ function ITEM:EquipL(client)
     self:SetData("equipLeftCrystal", true)
     self:SetData("equipRightCrystal", nil)
 end
--- Removes all instances of what is in the ITEM.class field from the player's lscs inventory
--- This does cause issues if you have two of the same thing equipped, working on getting this fixed.
+-- Removes whatever is in the ITEM.class field if it equipped to the appropriate hand
 function ITEM:Unequip(client)
     local lscsInventory = client:lscsGetInventory()
     
-    for k, v in pairs(lscsInventory) do
-        if v == self.class then
-            client:lscsRemoveItem(k)
-            client:lscsBuildPlayerInfo()
-        end
-    end
+    if (self:GetData("equipRightCrystal")) then
+		for k, v in pairs(lscsInventory) do
+			if v == self.class and client:lscsGetEquipped()[ k ] == true then
+				client:lscsRemoveItem(k)
+				client:lscsBuildPlayerInfo()
+			end
+		end
+	end
+	if (self:GetData("equipLeftCrystal")) then
+		for k, v in pairs(lscsInventory) do
+			if v == self.class and client:lscsGetEquipped()[ k ] == false then
+				client:lscsRemoveItem(k)
+				client:lscsBuildPlayerInfo()
+			end
+		end
+	end
 	client:StripWeapon("weapon_lscs")
 	if client:lscsIsValid() then
 		client:Give("weapon_lscs")
