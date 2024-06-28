@@ -8,9 +8,6 @@ Keep in mind this does not affect the functionality or appearance of any LSCS it
 
 This also adds a stat that influences a player's maximum force points, and in-game config for base force points and stat scaling.
 
-Known issues:
-For hilts and crystals, if both hands have the same item equipped, unequipping one will remove both from the player's inventory. For now, unequip both then equip the desired items.
-
 Documentation:
 [Helix](https://docs.gethelix.co)
 [LSCS lua functions](https://github.com/SpaxscE/lscs_public/blob/main/zz_templates_and_info/useful_lua_functions.txt)
