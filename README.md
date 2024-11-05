@@ -10,4 +10,4 @@ This also adds a stat that influences a player's maximum force points, and in-ga
 
 Documentation:
 [Helix](https://docs.gethelix.co)
-[LSCS lua functions](https://github.com/SpaxscE/lscs_public/blob/main/zz_templates_and_info/useful_lua_functions.txt)
+[LSCS]([https://github.com/SpaxscE/lscs_public/blob/main/zz_templates_and_info/useful_lua_functions.txt](https://github.com/SpaxscE/lscs_templates_and_info))
